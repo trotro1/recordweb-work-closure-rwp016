@@ -1,0 +1,91 @@
+{
+  "rwpSchemaVersion": "0.0.16",
+  "displayName": "Work Closure CaseRecord (experimental application subschema draft-0.9)",
+  "subClassOf": "did:rwp:d2d14675-50c9-463d-b564-1ea50644c836:schema-root-caserecord:sha256:3622a965594d5b9970f2e5c92c66f878ccfb5a972f61ac3b46ef41dbfa1116e9",
+  "allowedStates": [
+    "draft",
+    "finalized"
+  ],
+  "stateTransitions": [
+    {
+      "from": "draft",
+      "to": "finalized",
+      "requiresOwnerSignature": true
+    }
+  ],
+  "signaturePolicy": "owner",
+  "payloadFormats": {
+    "draft": [
+      "application/json"
+    ],
+    "finalized": [
+      "application/json"
+    ]
+  },
+  "capabilities": [
+    "validate"
+  ],
+  "jsonSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://example.org/schema/work-closure-caserecord/draft-0.9",
+    "title": "Work Closure CaseRecord payload",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "trigger",
+      "context",
+      "process",
+      "decision",
+      "result"
+    ],
+    "properties": {
+      "title": {
+        "type": "string"
+      },
+      "trigger": {
+        "type": "array",
+        "minItems": 2,
+        "uniqueItems": true,
+        "items": {
+          "$ref": "#/$defs/hardLink"
+        }
+      },
+      "context": {
+        "type": "array",
+        "uniqueItems": true,
+        "items": {
+          "$ref": "#/$defs/hardLink"
+        }
+      },
+      "process": {
+        "type": "array",
+        "uniqueItems": true,
+        "items": {
+          "$ref": "#/$defs/hardLink"
+        }
+      },
+      "decision": {
+        "type": "array",
+        "minItems": 1,
+        "uniqueItems": true,
+        "items": {
+          "$ref": "#/$defs/hardLink"
+        }
+      },
+      "result": {
+        "type": "array",
+        "minItems": 1,
+        "uniqueItems": true,
+        "items": {
+          "$ref": "#/$defs/hardLink"
+        }
+      }
+    },
+    "$defs": {
+      "hardLink": {
+        "type": "string",
+        "pattern": "^did:rwp:[^:]+:[^:]+:sha256:[0-9a-f]{64}$"
+      }
+    }
+  }
+}

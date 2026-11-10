@@ -1,0 +1,28 @@
+{
+  "policyVersion": "draft-0.9",
+  "selectionRule": "require-verified-signer-equals-assertedBy-and-authorized",
+  "description": "Illustrative verifier policy. In production this policy must be authenticated by the Case owner or fixed in an authenticated mandate and bound to the exact Case Version before assertions are collected.",
+  "cases": {
+    "did:rwp:example.org:case-completed:sha256:0000000000000000000000000000000000000000000000000000000000000000": {
+      "authorizedAssertedBy": [
+        "did:rwp:example.org:agent-record-authority",
+        "did:rwp:example.org:secondary-record-authority"
+      ]
+    },
+    "did:rwp:example.org:case-partial:sha256:0000000000000000000000000000000000000000000000000000000000000000": {
+      "authorizedAssertedBy": [
+        "did:rwp:example.org:agent-record-authority"
+      ]
+    },
+    "did:rwp:example.org:case-denied:sha256:0000000000000000000000000000000000000000000000000000000000000000": {
+      "authorizedAssertedBy": [
+        "did:rwp:example.org:agent-record-authority"
+      ]
+    },
+    "did:rwp:example.org:case-aborted:sha256:0000000000000000000000000000000000000000000000000000000000000000": {
+      "authorizedAssertedBy": [
+        "did:rwp:example.org:agent-record-authority"
+      ]
+    }
+  }
+}

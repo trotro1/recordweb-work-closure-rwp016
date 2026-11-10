@@ -1,0 +1,488 @@
+{
+  "fixtureVersion": "draft-0.9",
+  "warning": "Simulated proof-verification output for tests only; not cryptographic evidence.",
+  "versions": {
+    "did:rwp:example.org:case-completed:sha256:0000000000000000000000000000000000000000000000000000000000000000": {
+      "proofVerified": true,
+      "recordDid": "did:rwp:example.org:case-completed",
+      "versionHash": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+      "state": "finalized",
+      "parents": [],
+      "recordOwner": "did:rwp:example.org:case-owner",
+      "verificationMethodController": "did:rwp:example.org:case-owner",
+      "proofCreatedAt": "2026-11-10T01:10:35Z"
+    },
+    "did:rwp:example.org:assert-completed-01:sha256:1111111111111111111111111111111111111111111111111111111111111111": {
+      "proofVerified": true,
+      "recordDid": "did:rwp:example.org:assert-completed-01",
+      "versionHash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+      "state": "finalized",
+      "parents": [],
+      "recordOwner": "did:rwp:example.org:agent-record-authority",
+      "verificationMethodController": "did:rwp:example.org:agent-record-authority",
+      "proofCreatedAt": "2026-11-10T01:10:40Z"
+    },
+    "did:rwp:example.org:assert-completed-02:sha256:2222222222222222222222222222222222222222222222222222222222222222": {
+      "proofVerified": true,
+      "recordDid": "did:rwp:example.org:assert-completed-02",
+      "versionHash": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+      "state": "finalized",
+      "parents": [],
+      "recordOwner": "did:rwp:example.org:agent-record-authority",
+      "verificationMethodController": "did:rwp:example.org:agent-record-authority",
+      "proofCreatedAt": "2026-11-10T01:10:40Z"
+    },
+    "did:rwp:example.org:assert-completed-03:sha256:3333333333333333333333333333333333333333333333333333333333333333": {
+      "proofVerified": true,
+      "recordDid": "did:rwp:example.org:assert-completed-03",
+      "versionHash": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+      "state": "finalized",
+      "parents": [],
+      "recordOwner": "did:rwp:example.org:agent-record-authority",
+      "verificationMethodController": "did:rwp:example.org:agent-record-authority",
+      "proofCreatedAt": "2026-11-10T01:10:40Z"
+    },
+    "did:rwp:example.org:assert-completed-04:sha256:4444444444444444444444444444444444444444444444444444444444444444": {
+      "proofVerified": true,
+      "recordDid": "did:rwp:example.org:assert-completed-04",
+      "versionHash": "sha256:4444444444444444444444444444444444444444444444444444444444444444",
+      "state": "finalized",
+      "parents": [],
+      "recordOwner": "did:rwp:example.org:agent-record-authority",
+      "verificationMethodController": "did:rwp:example.org:agent-record-authority",
+      "proofCreatedAt": "2026-11-10T01:10:40Z"
+    },
+    "did:rwp:example.org:assert-completed-05:sha256:5555555555555555555555555555555555555555555555555555555555555555": {
+      "proofVerified": true,
+      "recordDid": "did:rwp:example.org:assert-completed-05",
+      "versionHash": "sha256:5555555555555555555555555555555555555555555555555555555555555555",
+      "state": "finalized",
+      "parents": [],
+      "recordOwner": "did:rwp:example.org:agent-record-authority",
+      "verificationMethodController": "did:rwp:example.org:agent-record-authority",
+      "proofCreatedAt": "2026-11-10T01:10:40Z"
+    },
+    "did:rwp:example.org:assert-completed-06:sha256:6666666666666666666666666666666666666666666666666666666666666666": {
+      "proofVerified": true,
+      "recordDid": "did:rwp:example.org:assert-completed-06",
+      "versionHash": "sha256:6666666666666666666666666666666666666666666666666666666666666666",
+      "state": "finalized",
+      "parents": [],
+      "recordOwner": "did:rwp:example.org:agent-record-authority",
+      "verificationMethodController": "did:rwp:example.org:agent-record-authority",
+      "proofCreatedAt": "2026-11-10T01:10:40Z"
+    },
+    "did:rwp:example.org:assert-completed-07:sha256:7777777777777777777777777777777777777777777777777777777777777777": {
+      "proofVerified": true,
+      "recordDid": "did:rwp:example.org:assert-completed-07",
+      "versionHash": "sha256:7777777777777777777777777777777777777777777777777777777777777777",
+      "state": "finalized",
+      "parents": [],
+      "recordOwner": "did:rwp:example.org:agent-record-authority",
+      "verificationMethodController": "did:rwp:example.org:agent-record-authority",
+      "proofCreatedAt": "2026-11-10T01:10:40Z"
+    },
+    "did:rwp:example.org:assert-completed-08:sha256:8888888888888888888888888888888888888888888888888888888888888888": {
+      "proofVerified": true,
+      "recordDid": "did:rwp:example.org:assert-completed-08",
+      "versionHash": "sha256:8888888888888888888888888888888888888888888888888888888888888888",
+      "state": "finalized",
+      "parents": [],
+      "recordOwner": "did:rwp:example.org:agent-record-authority",
+      "verificationMethodController": "did:rwp:example.org:agent-record-authority",
+      "proofCreatedAt": "2026-11-10T01:10:40Z"
+    },
+    "did:rwp:example.org:assert-completed-09:sha256:9999999999999999999999999999999999999999999999999999999999999999": {
+      "proofVerified": true,
+      "recordDid": "did:rwp:example.org:assert-completed-09",
+      "versionHash": "sha256:9999999999999999999999999999999999999999999999999999999999999999",
+      "state": "finalized",
+      "parents": [],
+      "recordOwner": "did:rwp:example.org:agent-record-authority",
+      "verificationMethodController": "did:rwp:example.org:agent-record-authority",
+      "proofCreatedAt": "2026-11-10T01:10:40Z"
+    },
+    "did:rwp:example.org:assert-completed-10:sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa": {
+      "proofVerified": true,
+      "recordDid": "did:rwp:example.org:assert-completed-10",
+      "versionHash": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "state": "finalized",
+      "parents": [
+        "sha256:6666666666666666666666666666666666666666666666666666666666666666"
+      ],
+      "recordOwner": "did:rwp:example.org:agent-record-authority",
+      "verificationMethodController": "did:rwp:example.org:agent-record-authority",
+      "proofCreatedAt": "2026-11-10T01:10:40Z"
+    },
+    "did:rwp:example.org:case-partial:sha256:0000000000000000000000000000000000000000000000000000000000000000": {
+      "proofVerified": true,
+      "recordDid": "did:rwp:example.org:case-partial",
+      "versionHash": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+      "state": "finalized",
+      "parents": [],
+      "recordOwner": "did:rwp:example.org:case-owner",
+      "verificationMethodController": "did:rwp:example.org:case-owner",
+      "proofCreatedAt": "2026-11-10T02:25:35Z"
+    },
+    "did:rwp:example.org:assert-partial-01:sha256:1111111111111111111111111111111111111111111111111111111111111111": {
+      "proofVerified": true,
+      "recordDid": "did:rwp:example.org:assert-partial-01",
+      "versionHash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+      "state": "finalized",
+      "parents": [],
+      "recordOwner": "did:rwp:example.org:agent-record-authority",
+      "verificationMethodController": "did:rwp:example.org:agent-record-authority",
+      "proofCreatedAt": "2026-11-10T02:25:40Z"
+    },
+    "did:rwp:example.org:assert-partial-02:sha256:2222222222222222222222222222222222222222222222222222222222222222": {
+      "proofVerified": true,
+      "recordDid": "did:rwp:example.org:assert-partial-02",
+      "versionHash": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+      "state": "finalized",
+      "parents": [],
+      "recordOwner": "did:rwp:example.org:agent-record-authority",
+      "verificationMethodController": "did:rwp:example.org:agent-record-authority",
+      "proofCreatedAt": "2026-11-10T02:25:40Z"
+    },
+    "did:rwp:example.org:assert-partial-03:sha256:3333333333333333333333333333333333333333333333333333333333333333": {
+      "proofVerified": true,
+      "recordDid": "did:rwp:example.org:assert-partial-03",
+      "versionHash": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+      "state": "finalized",
+      "parents": [],
+      "recordOwner": "did:rwp:example.org:agent-record-authority",
+      "verificationMethodController": "did:rwp:example.org:agent-record-authority",
+      "proofCreatedAt": "2026-11-10T02:25:40Z"
+    },
+    "did:rwp:example.org:assert-partial-04:sha256:4444444444444444444444444444444444444444444444444444444444444444": {
+      "proofVerified": true,
+      "recordDid": "did:rwp:example.org:assert-partial-04",
+      "versionHash": "sha256:4444444444444444444444444444444444444444444444444444444444444444",
+      "state": "finalized",
+      "parents": [],
+      "recordOwner": "did:rwp:example.org:agent-record-authority",
+      "verificationMethodController": "did:rwp:example.org:agent-record-authority",
+      "proofCreatedAt": "2026-11-10T02:25:40Z"
+    },
+    "did:rwp:example.org:assert-partial-05:sha256:5555555555555555555555555555555555555555555555555555555555555555": {
+      "proofVerified": true,
+      "recordDid": "did:rwp:example.org:assert-partial-05",
+      "versionHash": "sha256:5555555555555555555555555555555555555555555555555555555555555555",
+      "state": "finalized",
+      "parents": [],
+      "recordOwner": "did:rwp:example.org:agent-record-authority",
+      "verificationMethodController": "did:rwp:example.org:agent-record-authority",
+      "proofCreatedAt": "2026-11-10T02:25:40Z"
+    },
+    "did:rwp:example.org:assert-partial-06:sha256:6666666666666666666666666666666666666666666666666666666666666666": {
+      "proofVerified": true,
+      "recordDid": "did:rwp:example.org:assert-partial-06",
+      "versionHash": "sha256:6666666666666666666666666666666666666666666666666666666666666666",
+      "state": "finalized",
+      "parents": [],
+      "recordOwner": "did:rwp:example.org:agent-record-authority",
+      "verificationMethodController": "did:rwp:example.org:agent-record-authority",
+      "proofCreatedAt": "2026-11-10T02:25:40Z"
+    },
+    "did:rwp:example.org:assert-partial-07:sha256:7777777777777777777777777777777777777777777777777777777777777777": {
+      "proofVerified": true,
+      "recordDid": "did:rwp:example.org:assert-partial-07",
+      "versionHash": "sha256:7777777777777777777777777777777777777777777777777777777777777777",
+      "state": "finalized",
+      "parents": [],
+      "recordOwner": "did:rwp:example.org:agent-record-authority",
+      "verificationMethodController": "did:rwp:example.org:agent-record-authority",
+      "proofCreatedAt": "2026-11-10T02:25:40Z"
+    },
+    "did:rwp:example.org:assert-partial-08:sha256:8888888888888888888888888888888888888888888888888888888888888888": {
+      "proofVerified": true,
+      "recordDid": "did:rwp:example.org:assert-partial-08",
+      "versionHash": "sha256:8888888888888888888888888888888888888888888888888888888888888888",
+      "state": "finalized",
+      "parents": [],
+      "recordOwner": "did:rwp:example.org:agent-record-authority",
+      "verificationMethodController": "did:rwp:example.org:agent-record-authority",
+      "proofCreatedAt": "2026-11-10T02:25:40Z"
+    },
+    "did:rwp:example.org:assert-partial-09:sha256:9999999999999999999999999999999999999999999999999999999999999999": {
+      "proofVerified": true,
+      "recordDid": "did:rwp:example.org:assert-partial-09",
+      "versionHash": "sha256:9999999999999999999999999999999999999999999999999999999999999999",
+      "state": "finalized",
+      "parents": [],
+      "recordOwner": "did:rwp:example.org:agent-record-authority",
+      "verificationMethodController": "did:rwp:example.org:agent-record-authority",
+      "proofCreatedAt": "2026-11-10T02:25:40Z"
+    },
+    "did:rwp:example.org:assert-partial-10:sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa": {
+      "proofVerified": true,
+      "recordDid": "did:rwp:example.org:assert-partial-10",
+      "versionHash": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "state": "finalized",
+      "parents": [],
+      "recordOwner": "did:rwp:example.org:agent-record-authority",
+      "verificationMethodController": "did:rwp:example.org:agent-record-authority",
+      "proofCreatedAt": "2026-11-10T02:25:40Z"
+    },
+    "did:rwp:example.org:assert-partial-11:sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb": {
+      "proofVerified": true,
+      "recordDid": "did:rwp:example.org:assert-partial-11",
+      "versionHash": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "state": "finalized",
+      "parents": [],
+      "recordOwner": "did:rwp:example.org:agent-record-authority",
+      "verificationMethodController": "did:rwp:example.org:agent-record-authority",
+      "proofCreatedAt": "2026-11-10T02:25:40Z"
+    },
+    "did:rwp:example.org:assert-partial-12:sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc": {
+      "proofVerified": true,
+      "recordDid": "did:rwp:example.org:assert-partial-12",
+      "versionHash": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "state": "finalized",
+      "parents": [],
+      "recordOwner": "did:rwp:example.org:agent-record-authority",
+      "verificationMethodController": "did:rwp:example.org:agent-record-authority",
+      "proofCreatedAt": "2026-11-10T02:25:40Z"
+    },
+    "did:rwp:example.org:case-denied:sha256:0000000000000000000000000000000000000000000000000000000000000000": {
+      "proofVerified": true,
+      "recordDid": "did:rwp:example.org:case-denied",
+      "versionHash": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+      "state": "finalized",
+      "parents": [],
+      "recordOwner": "did:rwp:example.org:case-owner",
+      "verificationMethodController": "did:rwp:example.org:case-owner",
+      "proofCreatedAt": "2026-11-10T03:01:15Z"
+    },
+    "did:rwp:example.org:assert-denied-01:sha256:1111111111111111111111111111111111111111111111111111111111111111": {
+      "proofVerified": true,
+      "recordDid": "did:rwp:example.org:assert-denied-01",
+      "versionHash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+      "state": "finalized",
+      "parents": [],
+      "recordOwner": "did:rwp:example.org:agent-record-authority",
+      "verificationMethodController": "did:rwp:example.org:agent-record-authority",
+      "proofCreatedAt": "2026-11-10T03:01:20Z"
+    },
+    "did:rwp:example.org:assert-denied-02:sha256:2222222222222222222222222222222222222222222222222222222222222222": {
+      "proofVerified": true,
+      "recordDid": "did:rwp:example.org:assert-denied-02",
+      "versionHash": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+      "state": "finalized",
+      "parents": [],
+      "recordOwner": "did:rwp:example.org:agent-record-authority",
+      "verificationMethodController": "did:rwp:example.org:agent-record-authority",
+      "proofCreatedAt": "2026-11-10T03:01:20Z"
+    },
+    "did:rwp:example.org:assert-denied-03:sha256:3333333333333333333333333333333333333333333333333333333333333333": {
+      "proofVerified": true,
+      "recordDid": "did:rwp:example.org:assert-denied-03",
+      "versionHash": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+      "state": "finalized",
+      "parents": [],
+      "recordOwner": "did:rwp:example.org:agent-record-authority",
+      "verificationMethodController": "did:rwp:example.org:agent-record-authority",
+      "proofCreatedAt": "2026-11-10T03:01:20Z"
+    },
+    "did:rwp:example.org:assert-denied-04:sha256:4444444444444444444444444444444444444444444444444444444444444444": {
+      "proofVerified": true,
+      "recordDid": "did:rwp:example.org:assert-denied-04",
+      "versionHash": "sha256:4444444444444444444444444444444444444444444444444444444444444444",
+      "state": "finalized",
+      "parents": [],
+      "recordOwner": "did:rwp:example.org:agent-record-authority",
+      "verificationMethodController": "did:rwp:example.org:agent-record-authority",
+      "proofCreatedAt": "2026-11-10T03:01:20Z"
+    },
+    "did:rwp:example.org:case-aborted:sha256:0000000000000000000000000000000000000000000000000000000000000000": {
+      "proofVerified": true,
+      "recordDid": "did:rwp:example.org:case-aborted",
+      "versionHash": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+      "state": "finalized",
+      "parents": [],
+      "recordOwner": "did:rwp:example.org:case-owner",
+      "verificationMethodController": "did:rwp:example.org:case-owner",
+      "proofCreatedAt": "2026-11-10T04:05:35Z"
+    },
+    "did:rwp:example.org:assert-aborted-01:sha256:1111111111111111111111111111111111111111111111111111111111111111": {
+      "proofVerified": true,
+      "recordDid": "did:rwp:example.org:assert-aborted-01",
+      "versionHash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+      "state": "finalized",
+      "parents": [],
+      "recordOwner": "did:rwp:example.org:agent-record-authority",
+      "verificationMethodController": "did:rwp:example.org:agent-record-authority",
+      "proofCreatedAt": "2026-11-10T04:05:40Z"
+    },
+    "did:rwp:example.org:assert-aborted-02:sha256:2222222222222222222222222222222222222222222222222222222222222222": {
+      "proofVerified": true,
+      "recordDid": "did:rwp:example.org:assert-aborted-02",
+      "versionHash": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+      "state": "finalized",
+      "parents": [],
+      "recordOwner": "did:rwp:example.org:agent-record-authority",
+      "verificationMethodController": "did:rwp:example.org:agent-record-authority",
+      "proofCreatedAt": "2026-11-10T04:05:40Z"
+    },
+    "did:rwp:example.org:assert-aborted-03:sha256:3333333333333333333333333333333333333333333333333333333333333333": {
+      "proofVerified": true,
+      "recordDid": "did:rwp:example.org:assert-aborted-03",
+      "versionHash": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+      "state": "finalized",
+      "parents": [],
+      "recordOwner": "did:rwp:example.org:agent-record-authority",
+      "verificationMethodController": "did:rwp:example.org:agent-record-authority",
+      "proofCreatedAt": "2026-11-10T04:05:40Z"
+    },
+    "did:rwp:example.org:assert-aborted-04:sha256:4444444444444444444444444444444444444444444444444444444444444444": {
+      "proofVerified": true,
+      "recordDid": "did:rwp:example.org:assert-aborted-04",
+      "versionHash": "sha256:4444444444444444444444444444444444444444444444444444444444444444",
+      "state": "finalized",
+      "parents": [],
+      "recordOwner": "did:rwp:example.org:agent-record-authority",
+      "verificationMethodController": "did:rwp:example.org:agent-record-authority",
+      "proofCreatedAt": "2026-11-10T04:05:40Z"
+    },
+    "did:rwp:example.org:assert-aborted-05:sha256:5555555555555555555555555555555555555555555555555555555555555555": {
+      "proofVerified": true,
+      "recordDid": "did:rwp:example.org:assert-aborted-05",
+      "versionHash": "sha256:5555555555555555555555555555555555555555555555555555555555555555",
+      "state": "finalized",
+      "parents": [],
+      "recordOwner": "did:rwp:example.org:agent-record-authority",
+      "verificationMethodController": "did:rwp:example.org:agent-record-authority",
+      "proofCreatedAt": "2026-11-10T04:05:40Z"
+    },
+    "did:rwp:example.org:assert-aborted-06:sha256:6666666666666666666666666666666666666666666666666666666666666666": {
+      "proofVerified": true,
+      "recordDid": "did:rwp:example.org:assert-aborted-06",
+      "versionHash": "sha256:6666666666666666666666666666666666666666666666666666666666666666",
+      "state": "finalized",
+      "parents": [],
+      "recordOwner": "did:rwp:example.org:agent-record-authority",
+      "verificationMethodController": "did:rwp:example.org:agent-record-authority",
+      "proofCreatedAt": "2026-11-10T04:05:40Z"
+    },
+    "did:rwp:example.org:assert-aborted-07:sha256:7777777777777777777777777777777777777777777777777777777777777777": {
+      "proofVerified": true,
+      "recordDid": "did:rwp:example.org:assert-aborted-07",
+      "versionHash": "sha256:7777777777777777777777777777777777777777777777777777777777777777",
+      "state": "finalized",
+      "parents": [],
+      "recordOwner": "did:rwp:example.org:agent-record-authority",
+      "verificationMethodController": "did:rwp:example.org:agent-record-authority",
+      "proofCreatedAt": "2026-11-10T04:05:40Z"
+    },
+    "did:rwp:example.org:assert-aborted-08:sha256:8888888888888888888888888888888888888888888888888888888888888888": {
+      "proofVerified": true,
+      "recordDid": "did:rwp:example.org:assert-aborted-08",
+      "versionHash": "sha256:8888888888888888888888888888888888888888888888888888888888888888",
+      "state": "finalized",
+      "parents": [],
+      "recordOwner": "did:rwp:example.org:agent-record-authority",
+      "verificationMethodController": "did:rwp:example.org:agent-record-authority",
+      "proofCreatedAt": "2026-11-10T04:05:40Z"
+    },
+    "did:rwp:example.org:assert-aborted-09:sha256:9999999999999999999999999999999999999999999999999999999999999999": {
+      "proofVerified": true,
+      "recordDid": "did:rwp:example.org:assert-aborted-09",
+      "versionHash": "sha256:9999999999999999999999999999999999999999999999999999999999999999",
+      "state": "finalized",
+      "parents": [],
+      "recordOwner": "did:rwp:example.org:agent-record-authority",
+      "verificationMethodController": "did:rwp:example.org:agent-record-authority",
+      "proofCreatedAt": "2026-11-10T04:05:40Z"
+    },
+    "did:rwp:example.org:assert-aborted-10:sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa": {
+      "proofVerified": true,
+      "recordDid": "did:rwp:example.org:assert-aborted-10",
+      "versionHash": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "state": "finalized",
+      "parents": [],
+      "recordOwner": "did:rwp:example.org:agent-record-authority",
+      "verificationMethodController": "did:rwp:example.org:agent-record-authority",
+      "proofCreatedAt": "2026-11-10T04:05:40Z"
+    },
+    "did:rwp:example.org:assert-aborted-11:sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb": {
+      "proofVerified": true,
+      "recordDid": "did:rwp:example.org:assert-aborted-11",
+      "versionHash": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "state": "finalized",
+      "parents": [],
+      "recordOwner": "did:rwp:example.org:agent-record-authority",
+      "verificationMethodController": "did:rwp:example.org:agent-record-authority",
+      "proofCreatedAt": "2026-11-10T04:05:40Z"
+    },
+    "did:rwp:example.org:assert-aborted-12:sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc": {
+      "proofVerified": true,
+      "recordDid": "did:rwp:example.org:assert-aborted-12",
+      "versionHash": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "state": "finalized",
+      "parents": [],
+      "recordOwner": "did:rwp:example.org:agent-record-authority",
+      "verificationMethodController": "did:rwp:example.org:agent-record-authority",
+      "proofCreatedAt": "2026-11-10T04:05:40Z"
+    },
+    "did:rwp:attacker.example:assert-forged-signer:sha256:8888888888888888888888888888888888888888888888888888888888888888": {
+      "proofVerified": true,
+      "recordDid": "did:rwp:attacker.example:assert-forged-signer",
+      "versionHash": "sha256:8888888888888888888888888888888888888888888888888888888888888888",
+      "state": "finalized",
+      "parents": [],
+      "recordOwner": "did:rwp:attacker.example:issuer-1",
+      "verificationMethodController": "did:rwp:attacker.example:issuer-1",
+      "proofCreatedAt": "2026-11-10T01:10:45Z"
+    },
+    "did:rwp:example.org:assert-authorized-conflict:sha256:7777777777777777777777777777777777777777777777777777777777777777": {
+      "proofVerified": true,
+      "recordDid": "did:rwp:example.org:assert-authorized-conflict",
+      "versionHash": "sha256:7777777777777777777777777777777777777777777777777777777777777777",
+      "state": "finalized",
+      "parents": [],
+      "recordOwner": "did:rwp:example.org:secondary-record-authority",
+      "verificationMethodController": "did:rwp:example.org:secondary-record-authority",
+      "proofCreatedAt": "2026-11-10T01:10:46Z"
+    },
+    "did:rwp:example.org:assert-completed-10:sha256:6666666666666666666666666666666666666666666666666666666666666666": {
+      "proofVerified": true,
+      "recordDid": "did:rwp:example.org:assert-completed-10",
+      "versionHash": "sha256:6666666666666666666666666666666666666666666666666666666666666666",
+      "state": "finalized",
+      "parents": [],
+      "recordOwner": "did:rwp:example.org:agent-record-authority",
+      "verificationMethodController": "did:rwp:example.org:agent-record-authority",
+      "proofCreatedAt": "2026-11-10T01:10:38Z"
+    },
+    "did:rwp:attacker.example:assert-conflict:sha256:9999999999999999999999999999999999999999999999999999999999999999": {
+      "proofVerified": true,
+      "recordDid": "did:rwp:attacker.example:assert-conflict",
+      "versionHash": "sha256:9999999999999999999999999999999999999999999999999999999999999999",
+      "state": "finalized",
+      "parents": [],
+      "recordOwner": "did:rwp:attacker.example:issuer-1",
+      "verificationMethodController": "did:rwp:attacker.example:issuer-1",
+      "proofCreatedAt": "2026-11-10T01:10:45Z"
+    },
+    "did:rwp:example.org:assert-duplicate-mandate:sha256:5555555555555555555555555555555555555555555555555555555555555555": {
+      "proofVerified": true,
+      "recordDid": "did:rwp:example.org:assert-duplicate-mandate",
+      "versionHash": "sha256:5555555555555555555555555555555555555555555555555555555555555555",
+      "state": "finalized",
+      "parents": [],
+      "recordOwner": "did:rwp:example.org:secondary-record-authority",
+      "verificationMethodController": "did:rwp:example.org:secondary-record-authority",
+      "proofCreatedAt": "2026-11-10T01:10:47Z"
+    },
+    "did:rwp:example.org:assert-wrong-kind:sha256:4444444444444444444444444444444444444444444444444444444444444444": {
+      "proofVerified": true,
+      "recordDid": "did:rwp:example.org:assert-wrong-kind",
+      "versionHash": "sha256:4444444444444444444444444444444444444444444444444444444444444444",
+      "state": "finalized",
+      "parents": [],
+      "recordOwner": "did:rwp:example.org:agent-record-authority",
+      "verificationMethodController": "did:rwp:example.org:agent-record-authority",
+      "proofCreatedAt": "2026-11-10T01:10:48Z"
+    }
+  }
+}

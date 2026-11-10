@@ -1,0 +1,6 @@
+Python 3.11.4 (v3.11.4:d2340ef257, Jun  6 2023, 19:15:51) [Clang 13.0.0 (clang-1300.0.29.30)]
+pip 23.1.2 from <venv>/lib/python3.11/site-packages/pip (python 3.11)
+Darwin <host> 27.2.0 Darwin Kernel Version 27.2.0: Thu Oct 15 00:02:46 PDT 2026; root:xnu-13432.41.4~25/RELEASE_ARM64_T6000 arm64
+ProductName:		macOS
+ProductVersion:		27.2
+BuildVersion:		26B123

@@ -1,0 +1,84 @@
+{
+  "rwpSchemaVersion": "0.0.16",
+  "displayName": "Work Closure Role AssertionRecord (experimental application subschema draft-0.9)",
+  "subClassOf": "did:rwp:d2d14675-50c9-463d-b564-1ea50644c836:schema-root-assertionrecord:sha256:fe06970166343fd7ca1c7c948617c7f1869d2273727a66333aa459cd7a123ef4",
+  "allowedStates": [
+    "draft",
+    "finalized"
+  ],
+  "stateTransitions": [
+    {
+      "from": "draft",
+      "to": "finalized",
+      "requiresOwnerSignature": true
+    }
+  ],
+  "signaturePolicy": "owner",
+  "payloadFormats": {
+    "draft": [
+      "application/json"
+    ],
+    "finalized": [
+      "application/json"
+    ]
+  },
+  "capabilities": [
+    "validate"
+  ],
+  "jsonSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://example.org/schema/work-closure-role-assertion/draft-0.9",
+    "title": "Work Closure Role AssertionRecord payload",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "subject",
+      "predicate",
+      "object",
+      "assertedBy",
+      "assertedAt"
+    ],
+    "properties": {
+      "subject": {
+        "$ref": "#/$defs/hardRecordVersionLink"
+      },
+      "predicate": {
+        "type": "string",
+        "enum": [
+          "https://example.org/ns/work-closure#hasMandate",
+          "https://example.org/ns/work-closure#hasAuthorization",
+          "https://example.org/ns/work-closure#hasExecution",
+          "https://example.org/ns/work-closure#hasObservedEffect",
+          "https://example.org/ns/work-closure#hasEvidence",
+          "https://example.org/ns/work-closure#hasEvaluation",
+          "https://example.org/ns/work-closure#hasWorkAcceptance",
+          "https://example.org/ns/work-closure#hasOpenObligation",
+          "https://example.org/ns/work-closure#hasPendingAction",
+          "https://example.org/ns/work-closure#hasClosure",
+          "https://example.org/ns/work-closure#hasStopEvidence"
+        ]
+      },
+      "object": {
+        "$ref": "#/$defs/hardRecordVersionLink"
+      },
+      "assertedBy": {
+        "type": "string",
+        "pattern": "^did:rwp:[^:]+:[^:]+$"
+      },
+      "assertedAt": {
+        "type": "string",
+        "format": "date-time"
+      },
+      "effectiveAt": {
+        "type": "string",
+        "format": "date-time"
+      }
+    },
+    "$defs": {
+      "hardRecordVersionLink": {
+        "type": "string",
+        "pattern": "^did:rwp:[^:]+:[^:]+:sha256:[0-9a-f]{64}$"
+      }
+    }
+  }
+}

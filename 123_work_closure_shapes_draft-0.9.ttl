@@ -1,0 +1,539 @@
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rw:   <https://w3id.org/recordweb/ontology#> .
+@prefix sh:   <http://www.w3.org/ns/shacl#> .
+@prefix wce:  <https://example.org/ns/work-closure#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+# Experimental SHACL Core and SHACL-SPARQL constraints for the RWP 0.0.16
+# application-subschema projection. This is not an RWP wire validator.
+# The input graph MUST already have been filtered by proof verification and
+# the authenticated assertion trust policy. Unlisted, unverified, and
+# signer/assertedBy-mismatched assertions are not included in this graph.
+
+wce:WorkClosureCaseShape
+  a sh:NodeShape ;
+  sh:targetClass wce:WorkClosureCaseRecord ;
+  sh:property [ sh:path wce:title ; sh:maxCount 1 ] ;
+  sh:property [ sh:path wce:trigger ; sh:minCount 2 ; sh:nodeKind sh:IRI ; sh:class rw:Record ] ;
+  sh:property [ sh:path wce:context ; sh:nodeKind sh:IRI ; sh:class rw:Record ] ;
+  sh:property [ sh:path wce:process ; sh:nodeKind sh:IRI ; sh:class rw:Record ] ;
+  sh:property [ sh:path wce:decision ; sh:minCount 1 ; sh:nodeKind sh:IRI ; sh:class rw:Record ] ;
+  sh:property [ sh:path wce:result ; sh:minCount 1 ; sh:nodeKind sh:IRI ; sh:class rw:Record ] ;
+  sh:property [
+    sh:path wce:trigger ;
+    sh:qualifiedValueShape [ sh:class wce:MandateRecord ] ;
+    sh:qualifiedMinCount 1 ; sh:qualifiedMaxCount 1
+  ] ;
+  sh:property [
+    sh:path wce:trigger ;
+    sh:qualifiedValueShape [ sh:class wce:AuthorizationDecisionRecord ] ;
+    sh:qualifiedMinCount 1 ; sh:qualifiedMaxCount 1
+  ] ;
+  sh:property [
+    sh:path wce:decision ;
+    sh:qualifiedValueShape [ sh:class wce:WorkAcceptanceRecord ] ;
+    sh:qualifiedMinCount 1 ; sh:qualifiedMaxCount 1
+  ] ;
+  sh:property [
+    sh:path wce:result ;
+    sh:qualifiedValueShape [ sh:class wce:ClosureRecord ] ;
+    sh:qualifiedMinCount 1 ; sh:qualifiedMaxCount 1
+  ] ;
+  sh:sparql [
+    sh:message "Every specific role must be represented by a trusted, selected RoleAssertionRecord in the validation graph." ;
+    sh:select """
+      PREFIX wce: <https://example.org/ns/work-closure#>
+      SELECT $this WHERE {
+        {
+          $this wce:trigger ?object . ?object a wce:MandateRecord .
+          FILTER NOT EXISTS { ?a a wce:RoleAssertionRecord ; wce:subject $this ; wce:predicate wce:hasMandate ; wce:object ?object }
+        }
+        UNION {
+          $this wce:trigger ?object . ?object a wce:AuthorizationDecisionRecord .
+          FILTER NOT EXISTS { ?a a wce:RoleAssertionRecord ; wce:subject $this ; wce:predicate wce:hasAuthorization ; wce:object ?object }
+        }
+        UNION {
+          $this wce:process ?object . ?object a wce:ExecutionRecord .
+          FILTER NOT EXISTS { ?a a wce:RoleAssertionRecord ; wce:subject $this ; wce:predicate wce:hasExecution ; wce:object ?object }
+        }
+        UNION {
+          $this wce:context ?object . ?object a wce:ObservedEffectRecord .
+          FILTER NOT EXISTS { ?a a wce:RoleAssertionRecord ; wce:subject $this ; wce:predicate wce:hasObservedEffect ; wce:object ?object }
+        }
+        UNION {
+          $this wce:context ?object . ?object a wce:EvidenceRecord .
+          FILTER NOT EXISTS { ?a a wce:RoleAssertionRecord ; wce:subject $this ; wce:predicate wce:hasEvidence ; wce:object ?object }
+        }
+        UNION {
+          $this wce:decision ?object . ?object a wce:CriterionEvaluationRecord .
+          FILTER NOT EXISTS { ?a a wce:RoleAssertionRecord ; wce:subject $this ; wce:predicate wce:hasEvaluation ; wce:object ?object }
+        }
+        UNION {
+          $this wce:decision ?object . ?object a wce:WorkAcceptanceRecord .
+          FILTER NOT EXISTS { ?a a wce:RoleAssertionRecord ; wce:subject $this ; wce:predicate wce:hasWorkAcceptance ; wce:object ?object }
+        }
+        UNION {
+          $this wce:result ?object . ?object a wce:OpenObligationRecord .
+          FILTER NOT EXISTS { ?a a wce:RoleAssertionRecord ; wce:subject $this ; wce:predicate wce:hasOpenObligation ; wce:object ?object }
+        }
+        UNION {
+          $this wce:result ?object . ?object a wce:PendingActionRecord .
+          FILTER NOT EXISTS { ?a a wce:RoleAssertionRecord ; wce:subject $this ; wce:predicate wce:hasPendingAction ; wce:object ?object }
+        }
+        UNION {
+          $this wce:result ?object . ?object a wce:ClosureRecord .
+          FILTER NOT EXISTS { ?a a wce:RoleAssertionRecord ; wce:subject $this ; wce:predicate wce:hasClosure ; wce:object ?object }
+        }
+      }
+    """
+  ] ;
+  sh:sparql [
+    sh:message "Mandate, authorization, work-acceptance, and closure predicates require exactly one selected AssertionRecord each." ;
+    sh:select """
+      PREFIX wce: <https://example.org/ns/work-closure#>
+      SELECT $this WHERE {
+        { FILTER NOT EXISTS { ?a a wce:RoleAssertionRecord ; wce:subject $this ; wce:predicate wce:hasMandate } }
+        UNION { ?a a wce:RoleAssertionRecord ; wce:subject $this ; wce:predicate wce:hasMandate .
+                ?b a wce:RoleAssertionRecord ; wce:subject $this ; wce:predicate wce:hasMandate . FILTER(?a != ?b) }
+        UNION { FILTER NOT EXISTS { ?a a wce:RoleAssertionRecord ; wce:subject $this ; wce:predicate wce:hasAuthorization } }
+        UNION { ?a a wce:RoleAssertionRecord ; wce:subject $this ; wce:predicate wce:hasAuthorization .
+                ?b a wce:RoleAssertionRecord ; wce:subject $this ; wce:predicate wce:hasAuthorization . FILTER(?a != ?b) }
+        UNION { FILTER NOT EXISTS { ?a a wce:RoleAssertionRecord ; wce:subject $this ; wce:predicate wce:hasWorkAcceptance } }
+        UNION { ?a a wce:RoleAssertionRecord ; wce:subject $this ; wce:predicate wce:hasWorkAcceptance .
+                ?b a wce:RoleAssertionRecord ; wce:subject $this ; wce:predicate wce:hasWorkAcceptance . FILTER(?a != ?b) }
+        UNION { FILTER NOT EXISTS { ?a a wce:RoleAssertionRecord ; wce:subject $this ; wce:predicate wce:hasClosure } }
+        UNION { ?a a wce:RoleAssertionRecord ; wce:subject $this ; wce:predicate wce:hasClosure .
+                ?b a wce:RoleAssertionRecord ; wce:subject $this ; wce:predicate wce:hasClosure . FILTER(?a != ?b) }
+      }
+    """
+  ] ;
+  sh:sparql [
+    sh:message "The execution Activity plan must be the Mandate Record linked through trigger." ;
+    sh:select """
+      PREFIX prov: <http://www.w3.org/ns/prov#>
+      PREFIX wce: <https://example.org/ns/work-closure#>
+      SELECT $this WHERE {
+        $this wce:trigger ?mandate ; wce:process ?execution .
+        ?mandate a wce:MandateRecord .
+        ?execution a wce:ExecutionRecord ; wce:documentsActivity ?activity .
+        FILTER NOT EXISTS {
+          ?activity prov:qualifiedAssociation/prov:hadPlan ?mandate .
+        }
+      }
+    """
+  ] ;
+  sh:sparql [
+    sh:message "completed requires allow, execution, accepted work, complete and settled effects, and no obligation or pending action." ;
+    sh:select """
+      PREFIX wce: <https://example.org/ns/work-closure#>
+      SELECT $this WHERE {
+        $this wce:result ?closure .
+        ?closure a wce:ClosureRecord ; wce:closureStatus wce:completed .
+        { FILTER NOT EXISTS {
+            $this wce:trigger ?authorization .
+            ?authorization a wce:AuthorizationDecisionRecord ; wce:outcome wce:allow .
+          }
+        }
+        UNION { FILTER NOT EXISTS { $this wce:process ?execution . ?execution a wce:ExecutionRecord } }
+        UNION { FILTER NOT EXISTS {
+            $this wce:decision ?acceptance .
+            ?acceptance a wce:WorkAcceptanceRecord ; wce:workAcceptanceStatus wce:accepted .
+          }
+        }
+        UNION { FILTER NOT EXISTS { ?closure wce:effectCompleteness wce:complete } }
+        UNION { FILTER NOT EXISTS { ?closure wce:effectFinality wce:settled } }
+        UNION { $this wce:result ?obligation . ?obligation a wce:OpenObligationRecord }
+        UNION { $this wce:result ?action . ?action a wce:PendingActionRecord }
+        UNION { $this wce:context ?effect . ?effect a wce:ObservedEffectRecord ; wce:outcome wce:unknown }
+      }
+    """
+  ] ;
+  sh:sparql [
+    sh:message "Every completed-work mandate criterion requires one met evaluation derived from linked evidence." ;
+    sh:select """
+      PREFIX prov: <http://www.w3.org/ns/prov#>
+      PREFIX wce: <https://example.org/ns/work-closure#>
+      SELECT $this WHERE {
+        $this wce:result ?closure ; wce:trigger ?mandate .
+        ?closure a wce:ClosureRecord ; wce:closureStatus wce:completed .
+        ?mandate a wce:MandateRecord ; wce:criterion ?criterion .
+        FILTER NOT EXISTS {
+          $this wce:decision ?evaluation ; wce:context ?evidence .
+          ?evaluation a wce:CriterionEvaluationRecord ;
+            wce:criterion ?criterion ;
+            wce:outcome wce:met ;
+            prov:wasDerivedFrom ?evidence .
+          ?evidence a wce:EvidenceRecord .
+        }
+      }
+    """
+  ] ;
+  sh:sparql [
+    sh:message "Each completed-work evaluation requires linked evidence attributed outside all execution actors." ;
+    sh:select """
+      PREFIX prov: <http://www.w3.org/ns/prov#>
+      PREFIX wce: <https://example.org/ns/work-closure#>
+      SELECT $this WHERE {
+        $this wce:result ?closure ; wce:decision ?evaluation .
+        ?closure a wce:ClosureRecord ; wce:closureStatus wce:completed .
+        ?evaluation a wce:CriterionEvaluationRecord .
+        FILTER NOT EXISTS {
+          $this wce:context ?evidence .
+          ?evaluation prov:wasDerivedFrom ?evidence .
+          ?evidence a wce:EvidenceRecord ; prov:wasAttributedTo ?producer .
+          FILTER NOT EXISTS {
+            $this wce:process ?execution .
+            ?execution a wce:ExecutionRecord ; wce:documentsActivity ?workActivity .
+            ?workActivity prov:qualifiedAssociation/prov:agent ?producer .
+          }
+        }
+      }
+    """
+  ] ;
+  sh:sparql [
+    sh:message "For completed work, execution actors cannot also evaluate, accept, or close the work." ;
+    sh:select """
+      PREFIX prov: <http://www.w3.org/ns/prov#>
+      PREFIX wce: <https://example.org/ns/work-closure#>
+      SELECT $this WHERE {
+        $this wce:result ?closure ; wce:process ?execution .
+        ?closure a wce:ClosureRecord ; wce:closureStatus wce:completed .
+        ?execution a wce:ExecutionRecord ; wce:documentsActivity ?workActivity .
+        ?workActivity prov:qualifiedAssociation/prov:agent ?agent .
+        { $this wce:decision ?evaluation .
+          ?evaluation a wce:CriterionEvaluationRecord ; prov:wasGeneratedBy ?evaluationActivity .
+          ?evaluationActivity prov:wasAssociatedWith ?agent .
+        }
+        UNION { $this wce:decision ?acceptance .
+                ?acceptance a wce:WorkAcceptanceRecord ; wce:decidedBy ?agent }
+        UNION { ?closure wce:closedBy ?agent }
+      }
+    """
+  ] ;
+  sh:sparql [
+    sh:message "Every observed effect must use a controlled outcome and linked evidence." ;
+    sh:select """
+      PREFIX wce: <https://example.org/ns/work-closure#>
+      SELECT $this WHERE {
+        $this wce:context ?effect .
+        ?effect a wce:ObservedEffectRecord .
+        { FILTER NOT EXISTS {
+            ?effect wce:outcome ?outcome .
+            FILTER (?outcome IN (wce:applied, wce:notApplied, wce:reverted, wce:unknown))
+          }
+        }
+        UNION { FILTER NOT EXISTS {
+            ?effect wce:evidence ?evidence .
+            $this wce:context ?evidence .
+            ?evidence a wce:EvidenceRecord .
+          }
+        }
+      }
+    """
+  ] ;
+  sh:sparql [
+    sh:message "partial requires partiallyAccepted work and an open obligation or a non-met criterion." ;
+    sh:select """
+      PREFIX wce: <https://example.org/ns/work-closure#>
+      SELECT $this WHERE {
+        $this wce:result ?closure .
+        ?closure a wce:ClosureRecord ; wce:closureStatus wce:partial .
+        { FILTER NOT EXISTS {
+            $this wce:decision ?acceptance .
+            ?acceptance a wce:WorkAcceptanceRecord ; wce:workAcceptanceStatus wce:partiallyAccepted .
+          }
+        }
+        UNION {
+          FILTER NOT EXISTS { $this wce:result ?obligation . ?obligation a wce:OpenObligationRecord }
+          FILTER NOT EXISTS {
+            $this wce:decision ?evaluation .
+            ?evaluation a wce:CriterionEvaluationRecord ; wce:outcome ?outcome .
+            FILTER (?outcome != wce:met)
+          }
+        }
+      }
+    """
+  ] ;
+  sh:sparql [
+    sh:message "denied requires a rejecting authorization, rejected work, notApplicable finality, and no execution/effect/evaluation/obligation/pending action." ;
+    sh:select """
+      PREFIX wce: <https://example.org/ns/work-closure#>
+      SELECT $this WHERE {
+        $this wce:result ?closure .
+        ?closure a wce:ClosureRecord ; wce:closureStatus wce:denied .
+        { FILTER NOT EXISTS {
+            $this wce:trigger ?authorization .
+            ?authorization a wce:AuthorizationDecisionRecord ; wce:outcome ?outcome .
+            FILTER (?outcome IN (wce:deny, wce:ask, wce:stop))
+          }
+        }
+        UNION { FILTER NOT EXISTS {
+            $this wce:decision ?acceptance .
+            ?acceptance a wce:WorkAcceptanceRecord ; wce:workAcceptanceStatus wce:rejected .
+          }
+        }
+        UNION { FILTER NOT EXISTS { ?closure wce:effectFinality wce:notApplicable } }
+        UNION { $this wce:process ?execution . ?execution a wce:ExecutionRecord }
+        UNION { $this wce:context ?effect . ?effect a wce:ObservedEffectRecord }
+        UNION { $this wce:decision ?evaluation . ?evaluation a wce:CriterionEvaluationRecord }
+        UNION { $this wce:result ?obligation . ?obligation a wce:OpenObligationRecord }
+        UNION { $this wce:result ?action . ?action a wce:PendingActionRecord }
+      }
+    """
+  ] ;
+  sh:sparql [
+    sh:message "aborted requires execution, an asserted stop-evidence role, and an effect, obligation, or pending action." ;
+    sh:select """
+      PREFIX wce: <https://example.org/ns/work-closure#>
+      SELECT $this WHERE {
+        $this wce:result ?closure .
+        ?closure a wce:ClosureRecord ; wce:closureStatus wce:aborted .
+        { FILTER NOT EXISTS { $this wce:process ?execution . ?execution a wce:ExecutionRecord } }
+        UNION { FILTER NOT EXISTS {
+            $this wce:context ?stopEvidence .
+            ?assertion a wce:RoleAssertionRecord ;
+              wce:subject $this ;
+              wce:predicate wce:hasStopEvidence ;
+              wce:object ?stopEvidence .
+            ?stopEvidence a wce:EvidenceRecord .
+          }
+        }
+        UNION {
+          FILTER NOT EXISTS { $this wce:context ?effect . ?effect a wce:ObservedEffectRecord }
+          FILTER NOT EXISTS { $this wce:result ?obligation . ?obligation a wce:OpenObligationRecord }
+          FILTER NOT EXISTS { $this wce:result ?action . ?action a wce:PendingActionRecord }
+        }
+      }
+    """
+  ] ;
+  sh:sparql [
+    sh:message "provisional effect finality requires a PendingActionRecord in result." ;
+    sh:select """
+      PREFIX wce: <https://example.org/ns/work-closure#>
+      SELECT $this WHERE {
+        $this wce:result ?closure .
+        ?closure a wce:ClosureRecord ; wce:effectFinality wce:provisional .
+        FILTER NOT EXISTS { $this wce:result ?action . ?action a wce:PendingActionRecord }
+      }
+    """
+  ] .
+
+wce:RoleAssertionRecordShape
+  a sh:NodeShape ;
+  sh:targetClass wce:RoleAssertionRecord ;
+  sh:property [ sh:path wce:subject ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+  sh:property [
+    sh:path wce:predicate ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ;
+    sh:in (
+      wce:hasMandate wce:hasAuthorization wce:hasExecution
+      wce:hasObservedEffect wce:hasEvidence wce:hasEvaluation
+      wce:hasWorkAcceptance wce:hasOpenObligation wce:hasPendingAction
+      wce:hasClosure wce:hasStopEvidence
+    )
+  ] ;
+  sh:property [ sh:path wce:object ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+  sh:property [ sh:path wce:assertedBy ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+  sh:property [ sh:path wce:assertedAt ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:dateTime ] ;
+  sh:sparql [
+    sh:message "Each Work Closure predicate requires its declared object Record type." ;
+    sh:select """
+      PREFIX wce: <https://example.org/ns/work-closure#>
+      SELECT $this WHERE {
+        { $this wce:predicate wce:hasMandate ; wce:object ?object .
+          FILTER NOT EXISTS { ?object a wce:MandateRecord } }
+        UNION { $this wce:predicate wce:hasAuthorization ; wce:object ?object .
+          FILTER NOT EXISTS { ?object a wce:AuthorizationDecisionRecord } }
+        UNION { $this wce:predicate wce:hasExecution ; wce:object ?object .
+          FILTER NOT EXISTS { ?object a wce:ExecutionRecord } }
+        UNION { $this wce:predicate wce:hasObservedEffect ; wce:object ?object .
+          FILTER NOT EXISTS { ?object a wce:ObservedEffectRecord } }
+        UNION { $this wce:predicate wce:hasEvidence ; wce:object ?object .
+          FILTER NOT EXISTS { ?object a wce:EvidenceRecord } }
+        UNION { $this wce:predicate wce:hasEvaluation ; wce:object ?object .
+          FILTER NOT EXISTS { ?object a wce:CriterionEvaluationRecord } }
+        UNION { $this wce:predicate wce:hasWorkAcceptance ; wce:object ?object .
+          FILTER NOT EXISTS { ?object a wce:WorkAcceptanceRecord } }
+        UNION { $this wce:predicate wce:hasOpenObligation ; wce:object ?object .
+          FILTER NOT EXISTS { ?object a wce:OpenObligationRecord } }
+        UNION { $this wce:predicate wce:hasPendingAction ; wce:object ?object .
+          FILTER NOT EXISTS { ?object a wce:PendingActionRecord } }
+        UNION { $this wce:predicate wce:hasClosure ; wce:object ?object .
+          FILTER NOT EXISTS { ?object a wce:ClosureRecord } }
+        UNION { $this wce:predicate wce:hasStopEvidence ; wce:object ?object .
+          FILTER NOT EXISTS { ?object a wce:EvidenceRecord } }
+      }
+    """
+  ] ;
+  sh:sparql [
+    sh:message "Separate selected Assertion Records must not duplicate the same subject, predicate, and object." ;
+    sh:select """
+      PREFIX wce: <https://example.org/ns/work-closure#>
+      SELECT $this WHERE {
+        $this wce:subject ?case ; wce:predicate ?predicate ; wce:object ?object .
+        ?other a wce:RoleAssertionRecord ;
+          wce:subject ?case ; wce:predicate ?predicate ; wce:object ?object .
+        FILTER(?other != $this)
+      }
+    """
+  ] ;
+  sh:sparql [
+    sh:message "The asserted role object must occur in the corresponding Root CaseRecord field." ;
+    sh:select """
+      PREFIX wce: <https://example.org/ns/work-closure#>
+      SELECT $this WHERE {
+        {
+          $this wce:subject ?case ; wce:predicate wce:hasMandate ; wce:object ?object .
+          FILTER NOT EXISTS { ?case wce:trigger ?object }
+        }
+        UNION {
+          $this wce:subject ?case ; wce:predicate wce:hasAuthorization ; wce:object ?object .
+          FILTER NOT EXISTS { ?case wce:trigger ?object }
+        }
+        UNION {
+          $this wce:subject ?case ; wce:predicate wce:hasExecution ; wce:object ?object .
+          FILTER NOT EXISTS { ?case wce:process ?object }
+        }
+        UNION {
+          $this wce:subject ?case ; wce:predicate wce:hasObservedEffect ; wce:object ?object .
+          FILTER NOT EXISTS { ?case wce:context ?object }
+        }
+        UNION {
+          $this wce:subject ?case ; wce:predicate wce:hasEvidence ; wce:object ?object .
+          FILTER NOT EXISTS { ?case wce:context ?object }
+        }
+        UNION {
+          $this wce:subject ?case ; wce:predicate wce:hasEvaluation ; wce:object ?object .
+          FILTER NOT EXISTS { ?case wce:decision ?object }
+        }
+        UNION {
+          $this wce:subject ?case ; wce:predicate wce:hasWorkAcceptance ; wce:object ?object .
+          FILTER NOT EXISTS { ?case wce:decision ?object }
+        }
+        UNION {
+          $this wce:subject ?case ; wce:predicate wce:hasOpenObligation ; wce:object ?object .
+          FILTER NOT EXISTS { ?case wce:result ?object }
+        }
+        UNION {
+          $this wce:subject ?case ; wce:predicate wce:hasPendingAction ; wce:object ?object .
+          FILTER NOT EXISTS { ?case wce:result ?object }
+        }
+        UNION {
+          $this wce:subject ?case ; wce:predicate wce:hasClosure ; wce:object ?object .
+          FILTER NOT EXISTS { ?case wce:result ?object }
+        }
+        UNION {
+          $this wce:subject ?case ; wce:predicate wce:hasStopEvidence ; wce:object ?object .
+          FILTER NOT EXISTS { ?case wce:context ?object }
+        }
+      }
+    """
+  ] .
+
+wce:MandateRecordShape
+  a sh:NodeShape ;
+  sh:targetClass wce:MandateRecord ;
+  sh:property [ sh:path wce:criterion ; sh:minCount 1 ] .
+
+wce:AuthorizationDecisionRecordShape
+  a sh:NodeShape ;
+  sh:targetClass wce:AuthorizationDecisionRecord ;
+  sh:property [ sh:path wce:outcome ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( wce:allow wce:deny wce:ask wce:stop ) ] ;
+  sh:property [ sh:path wce:decidedBy ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+  sh:property [ sh:path wce:decidedAt ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:dateTime ] .
+
+wce:ExecutionRecordShape
+  a sh:NodeShape ;
+  sh:targetClass wce:ExecutionRecord ;
+  sh:property [ sh:path wce:documentsActivity ; sh:minCount 1 ; sh:maxCount 1 ; sh:class prov:Activity ] ;
+  sh:property [ sh:path prov:wasGeneratedBy ; sh:minCount 1 ; sh:maxCount 1 ; sh:class prov:Activity ] ;
+  sh:sparql [
+    sh:message "Execution Record documentsActivity and prov:wasGeneratedBy must identify the same Activity." ;
+    sh:select """
+      PREFIX prov: <http://www.w3.org/ns/prov#>
+      PREFIX wce: <https://example.org/ns/work-closure#>
+      SELECT $this WHERE {
+        $this wce:documentsActivity ?documented ; prov:wasGeneratedBy ?generator .
+        FILTER (?documented != ?generator)
+      }
+    """
+  ] .
+
+wce:WorkActivityShape
+  a sh:NodeShape ;
+  sh:targetObjectsOf wce:documentsActivity ;
+  sh:class prov:Activity ;
+  sh:property [ sh:path prov:qualifiedAssociation ; sh:minCount 1 ; sh:nodeKind sh:BlankNodeOrIRI ] ;
+  sh:property [
+    sh:path prov:hadPlan ; sh:maxCount 0 ;
+    sh:message "prov:hadPlan belongs on prov:Association, not directly on prov:Activity."
+  ] .
+
+wce:AssociationShape
+  a sh:NodeShape ;
+  sh:targetObjectsOf prov:qualifiedAssociation ;
+  sh:class prov:Association ;
+  sh:property [ sh:path prov:agent ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+  sh:property [ sh:path prov:hadPlan ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] .
+
+wce:CriterionEvaluationRecordShape
+  a sh:NodeShape ;
+  sh:targetClass wce:CriterionEvaluationRecord ;
+  sh:property [ sh:path wce:criterion ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path wce:outcome ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( wce:met wce:notMet wce:partiallyMet wce:notEvaluated ) ] ;
+  sh:property [ sh:path prov:wasGeneratedBy ; sh:minCount 1 ; sh:maxCount 1 ; sh:class prov:Activity ] ;
+  sh:property [ sh:path prov:wasDerivedFrom ; sh:minCount 1 ; sh:nodeKind sh:IRI ] .
+
+wce:WorkAcceptanceRecordShape
+  a sh:NodeShape ;
+  sh:targetClass wce:WorkAcceptanceRecord ;
+  sh:property [ sh:path wce:workAcceptanceStatus ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( wce:accepted wce:partiallyAccepted wce:rejected wce:escalated wce:withdrawn wce:notApplicable ) ] ;
+  sh:property [ sh:path wce:decidedBy ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+  sh:property [ sh:path wce:decidedAt ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:dateTime ] .
+
+wce:ClosureRecordShape
+  a sh:NodeShape ;
+  sh:targetClass wce:ClosureRecord ;
+  sh:property [ sh:path wce:closureStatus ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( wce:completed wce:denied wce:partial wce:aborted ) ] ;
+  sh:property [ sh:path wce:effectCompleteness ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( wce:complete wce:partial wce:unknown ) ] ;
+  sh:property [ sh:path wce:effectFinality ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( wce:settled wce:provisional wce:notApplicable ) ] ;
+  sh:property [ sh:path wce:closedBy ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+  sh:property [ sh:path wce:closedAt ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:dateTime ] .
+
+wce:EvidenceRecordShape
+  a sh:NodeShape ;
+  sh:targetClass wce:EvidenceRecord .
+
+wce:ObservedEffectRecordShape
+  a sh:NodeShape ;
+  sh:targetClass wce:ObservedEffectRecord ;
+  sh:property [ sh:path wce:outcome ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( wce:applied wce:notApplied wce:reverted wce:unknown ) ] ;
+  sh:property [ sh:path wce:evidence ; sh:minCount 1 ; sh:nodeKind sh:IRI ] ;
+  sh:sparql [
+    sh:message "A reverted effect must retain a link to an earlier applied effect." ;
+    sh:select """
+      PREFIX wce: <https://example.org/ns/work-closure#>
+      SELECT $this WHERE {
+        $this wce:outcome wce:reverted .
+        FILTER NOT EXISTS {
+          $this wce:priorEffect ?prior .
+          ?prior a wce:ObservedEffectRecord ; wce:outcome wce:applied .
+        }
+      }
+    """
+  ] .
+
+wce:OpenObligationRecordShape
+  a sh:NodeShape ;
+  sh:targetClass wce:OpenObligationRecord ;
+  sh:property [ sh:path wce:owner ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+  sh:property [ sh:path wce:successorWork ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+  sh:property [ sh:path wce:acknowledgedBy ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+  sh:property [ sh:path wce:acknowledgedAt ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:dateTime ] ;
+  sh:property [ sh:path wce:evidence ; sh:minCount 1 ; sh:nodeKind sh:IRI ] .
+
+wce:PendingActionRecordShape
+  a sh:NodeShape ;
+  sh:targetClass wce:PendingActionRecord ;
+  sh:property [ sh:path wce:actionId ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path wce:owner ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+  sh:property [ sh:path wce:dueCondition ; sh:minCount 1 ; sh:maxCount 1 ] .

@@ -1,0 +1,3 @@
+FATAL: rfc3339-validator is required; refusing to run without RFC 3339 date-time validation
+
+EXIT_CODE=1

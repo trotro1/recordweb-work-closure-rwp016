@@ -1,0 +1,42 @@
+BASELINE rootCase=sha256:3622a965594d5b9970f2e5c92c66f878ccfb5a972f61ac3b46ef41dbfa1116e9 rootAssertion=sha256:fe06970166343fd7ca1c7c948617c7f1869d2273727a66333aa459cd7a123ef4
+POSITIVE 01_completed_work_closure_rwp-0.0.16.test.jsonld: pass=True root=True subschema=True rootAssertions=True roleSubschema=True policy=True ignored=0 shacl=True triples=142
+POSITIVE 02_partial_work_closure_rwp-0.0.16.test.jsonld: pass=True root=True subschema=True rootAssertions=True roleSubschema=True policy=True ignored=0 shacl=True triples=168
+POSITIVE 03_denied_work_closure_rwp-0.0.16.test.jsonld: pass=True root=True subschema=True rootAssertions=True roleSubschema=True policy=True ignored=0 shacl=True triples=57
+POSITIVE 04_aborted_work_closure_rwp-0.0.16.test.jsonld: pass=True root=True subschema=True rootAssertions=True roleSubschema=True policy=True ignored=0 shacl=True triples=154
+NEGATIVE 01_missing_trigger_field: rejected=True root=True subschema=False rootAssertions=True roleSubschema=True policy=True ignored=0 shacl=False
+NEGATIVE 02_duplicate_trigger_link: rejected=True root=True subschema=False rootAssertions=True roleSubschema=True policy=True ignored=0 shacl=True
+NEGATIVE 03_soft_link_in_case_field: rejected=True root=True subschema=False rootAssertions=True roleSubschema=True policy=True ignored=0 shacl=False
+NEGATIVE 04_missing_mandate_role_assertion: rejected=True root=True subschema=True rootAssertions=True roleSubschema=True policy=True ignored=0 shacl=False
+NEGATIVE 05_role_assertion_wrong_subject: rejected=True root=True subschema=True rootAssertions=True roleSubschema=False policy=True ignored=0 shacl=False
+NEGATIVE 06_role_assertion_object_in_wrong_field: rejected=True root=True subschema=True rootAssertions=True roleSubschema=True policy=True ignored=0 shacl=False
+NEGATIVE 07_role_assertion_missing_asserted_by: rejected=True root=True subschema=True rootAssertions=False roleSubschema=False policy=True ignored=1 shacl=False
+NEGATIVE 08_role_assertion_subject_is_soft_link: rejected=True root=True subschema=True rootAssertions=True roleSubschema=False policy=True ignored=0 shacl=False
+NEGATIVE 09_completed_with_denied_authorization: rejected=True root=True subschema=True rootAssertions=True roleSubschema=True policy=True ignored=0 shacl=False
+NEGATIVE 10_completed_with_rejected_acceptance: rejected=True root=True subschema=True rootAssertions=True roleSubschema=True policy=True ignored=0 shacl=False
+NEGATIVE 11_completed_without_execution: rejected=True root=True subschema=True rootAssertions=True roleSubschema=True policy=True ignored=0 shacl=False
+NEGATIVE 12_completed_missing_criterion_evaluation: rejected=True root=True subschema=True rootAssertions=True roleSubschema=True policy=True ignored=0 shacl=False
+NEGATIVE 13_completed_evaluation_without_evidence: rejected=True root=True subschema=True rootAssertions=True roleSubschema=True policy=True ignored=0 shacl=False
+NEGATIVE 14_completed_executor_self_evaluates: rejected=True root=True subschema=True rootAssertions=True roleSubschema=True policy=True ignored=0 shacl=False
+NEGATIVE 15_completed_executor_produced_evidence: rejected=True root=True subschema=True rootAssertions=True roleSubschema=True policy=True ignored=0 shacl=False
+NEGATIVE 16_provisional_without_pending_action: rejected=True root=True subschema=True rootAssertions=True roleSubschema=True policy=True ignored=0 shacl=False
+NEGATIVE 17_completed_with_unknown_effect: rejected=True root=True subschema=True rootAssertions=True roleSubschema=True policy=True ignored=0 shacl=False
+NEGATIVE 18_partial_without_obligation_or_nonmet_criterion: rejected=True root=True subschema=True rootAssertions=True roleSubschema=True policy=True ignored=0 shacl=False
+NEGATIVE 19_denied_with_settled_finality: rejected=True root=True subschema=True rootAssertions=True roleSubschema=True policy=True ignored=0 shacl=False
+NEGATIVE 20_aborted_without_stop_evidence_assertion: rejected=True root=True subschema=True rootAssertions=True roleSubschema=True policy=True ignored=0 shacl=False
+NEGATIVE 21_reverted_effect_without_prior_applied_effect: rejected=True root=True subschema=True rootAssertions=True roleSubschema=True policy=True ignored=0 shacl=False
+NEGATIVE 22_effect_with_arbitrary_outcome: rejected=True root=True subschema=True rootAssertions=True roleSubschema=True policy=True ignored=0 shacl=False
+NEGATIVE 23_business_status_added_to_caserecord: rejected=True root=True subschema=False rootAssertions=True roleSubschema=True policy=True ignored=0 shacl=True
+NEGATIVE 24_asserting_agent_is_not_did: rejected=True root=True subschema=True rootAssertions=True roleSubschema=False policy=True ignored=1 shacl=False
+NEGATIVE 25_asserted_at_is_not_datetime: rejected=True root=True subschema=True rootAssertions=False roleSubschema=False policy=True ignored=0 shacl=skipped-after-format-rejection
+NEGATIVE 26_only_untrusted_assertion_cannot_satisfy_role: rejected=True root=True subschema=True rootAssertions=True roleSubschema=True policy=True ignored=1 shacl=False
+NEGATIVE 27_assertion_proof_before_case_proof: rejected=True root=True subschema=True rootAssertions=True roleSubschema=True policy=False ignored=0 shacl=False
+NEGATIVE 28_forged_asserted_by_does_not_match_verified_signer: rejected=True root=True subschema=True rootAssertions=True roleSubschema=True policy=True ignored=1 shacl=False
+NEGATIVE 29_authorized_issuers_conflict_fails_closed: rejected=True root=True subschema=True rootAssertions=True roleSubschema=True policy=True ignored=0 shacl=False
+NEGATIVE 30_case_proof_signer_is_not_case_owner: rejected=True root=True subschema=True rootAssertions=True roleSubschema=True policy=False ignored=0 shacl=True
+NEGATIVE 31_predicate_object_kind_is_wrong: rejected=True root=True subschema=True rootAssertions=True roleSubschema=True policy=True ignored=0 shacl=False
+NEGATIVE 32_singular_predicate_has_duplicate_assertions: rejected=True root=True subschema=True rootAssertions=True roleSubschema=True policy=True ignored=0 shacl=False
+RESILIENCE 01_untrusted_contradictory_assertion_is_ignored: pass=True rawAssertionsSchema=True ignored=1 selectedShacl=True
+RESILIENCE 02_stale_authorized_duplicate_is_ignored: pass=True rawAssertionsSchema=True ignored=1 selectedShacl=True
+RESILIENCE 03_newer_version_changes_object_and_supersedes_old: pass=True rawAssertionsSchema=True ignored=1 selectedShacl=True
+RESILIENCE 04_untrusted_pseudo_successor_cannot_change_version_head: pass=True rawAssertionsSchema=True ignored=1 selectedShacl=True
+RESULT: PASS (positive=4, negative=32, resilience=4)

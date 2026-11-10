@@ -1,0 +1,312 @@
+{
+  "@context": "../122_work_closure_context_draft-0.9.jsonld",
+  "@graph": [
+    {
+      "@id": "did:rwp:example.org:case-completed:sha256:0000000000000000000000000000000000000000000000000000000000000000",
+      "@type": [
+        "rw:Record",
+        "wce:WorkClosureCaseRecord"
+      ],
+      "testVector": true,
+      "title": "Completed bounded work",
+      "trigger": [
+        "did:rwp:example.org:mandate-completed:sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "did:rwp:example.org:authorization-completed:sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      ],
+      "context": [
+        "did:rwp:example.org:effect-completed:sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+        "did:rwp:example.org:evidence-diff-completed:sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+        "did:rwp:example.org:evidence-test-completed:sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+      ],
+      "process": [
+        "did:rwp:example.org:execution-completed:sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      ],
+      "decision": [
+        "did:rwp:example.org:evaluation-tests-completed:sha256:1111111111111111111111111111111111111111111111111111111111111111",
+        "did:rwp:example.org:evaluation-review-completed:sha256:2222222222222222222222222222222222222222222222222222222222222222",
+        "did:rwp:example.org:acceptance-completed:sha256:3333333333333333333333333333333333333333333333333333333333333333"
+      ],
+      "result": [
+        "did:rwp:example.org:closure-completed:sha256:4444444444444444444444444444444444444444444444444444444444444444"
+      ]
+    },
+    {
+      "@id": "did:rwp:example.org:mandate-completed:sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "@type": [
+        "rw:Record",
+        "prov:Plan",
+        "wce:MandateRecord"
+      ],
+      "criterion": [
+        "tests-pass",
+        "review-recorded"
+      ]
+    },
+    {
+      "@id": "did:rwp:example.org:authorization-completed:sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "@type": [
+        "rw:Record",
+        "wce:AuthorizationDecisionRecord"
+      ],
+      "outcome": "allow",
+      "decidedBy": "did:rwp:example.org:pdp-engineering",
+      "decidedAt": "2026-11-10T01:01:00Z"
+    },
+    {
+      "@id": "did:rwp:example.org:execution-completed:sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "@type": [
+        "rw:Record",
+        "wce:ExecutionRecord"
+      ],
+      "documentsActivity": "urn:uuid:10000000-0000-4000-8000-000000000001",
+      "prov:wasGeneratedBy": {
+        "@id": "urn:uuid:10000000-0000-4000-8000-000000000001"
+      }
+    },
+    {
+      "@id": "urn:uuid:10000000-0000-4000-8000-000000000001",
+      "@type": "prov:Activity",
+      "prov:qualifiedAssociation": {
+        "@type": "prov:Association",
+        "prov:agent": {
+          "@id": "spiffe://example.org/agent/coding-01"
+        },
+        "prov:hadPlan": {
+          "@id": "did:rwp:example.org:mandate-completed:sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      }
+    },
+    {
+      "@id": "did:rwp:example.org:effect-completed:sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      "@type": [
+        "rw:Record",
+        "wce:ObservedEffectRecord"
+      ],
+      "outcome": "applied",
+      "evidence": [
+        "did:rwp:example.org:evidence-diff-completed:sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+      ],
+      "prov:wasGeneratedBy": {
+        "@id": "urn:uuid:10000000-0000-4000-8000-000000000001"
+      }
+    },
+    {
+      "@id": "did:rwp:example.org:evidence-diff-completed:sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "@type": [
+        "rw:Record",
+        "wce:EvidenceRecord"
+      ],
+      "prov:wasAttributedTo": {
+        "@id": "did:rwp:example.org:git-service"
+      }
+    },
+    {
+      "@id": "did:rwp:example.org:evidence-test-completed:sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "@type": [
+        "rw:Record",
+        "wce:EvidenceRecord"
+      ],
+      "prov:wasAttributedTo": {
+        "@id": "did:rwp:example.org:ci-service"
+      }
+    },
+    {
+      "@id": "did:rwp:example.org:evaluation-tests-completed:sha256:1111111111111111111111111111111111111111111111111111111111111111",
+      "@type": [
+        "rw:Record",
+        "wce:CriterionEvaluationRecord"
+      ],
+      "criterion": "tests-pass",
+      "outcome": "met",
+      "prov:wasGeneratedBy": {
+        "@id": "urn:uuid:10000000-0000-4000-8000-000000000002"
+      },
+      "prov:wasDerivedFrom": {
+        "@id": "did:rwp:example.org:evidence-test-completed:sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+      }
+    },
+    {
+      "@id": "urn:uuid:10000000-0000-4000-8000-000000000002",
+      "@type": "prov:Activity",
+      "prov:wasAssociatedWith": {
+        "@id": "did:rwp:example.org:ci-service"
+      }
+    },
+    {
+      "@id": "did:rwp:example.org:evaluation-review-completed:sha256:2222222222222222222222222222222222222222222222222222222222222222",
+      "@type": [
+        "rw:Record",
+        "wce:CriterionEvaluationRecord"
+      ],
+      "criterion": "review-recorded",
+      "outcome": "met",
+      "prov:wasGeneratedBy": {
+        "@id": "urn:uuid:10000000-0000-4000-8000-000000000003"
+      },
+      "prov:wasDerivedFrom": {
+        "@id": "did:rwp:example.org:evidence-diff-completed:sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+      }
+    },
+    {
+      "@id": "urn:uuid:10000000-0000-4000-8000-000000000003",
+      "@type": "prov:Activity",
+      "prov:wasAssociatedWith": {
+        "@id": "did:rwp:example.org:reviewer-7"
+      }
+    },
+    {
+      "@id": "did:rwp:example.org:acceptance-completed:sha256:3333333333333333333333333333333333333333333333333333333333333333",
+      "@type": [
+        "rw:Record",
+        "wce:WorkAcceptanceRecord"
+      ],
+      "workAcceptanceStatus": "accepted",
+      "decidedBy": "did:rwp:example.org:maintainer-42",
+      "decidedAt": "2026-11-10T01:10:25Z"
+    },
+    {
+      "@id": "did:rwp:example.org:closure-completed:sha256:4444444444444444444444444444444444444444444444444444444444444444",
+      "@type": [
+        "rw:Record",
+        "wce:ClosureRecord"
+      ],
+      "closureStatus": "completed",
+      "effectCompleteness": "complete",
+      "effectFinality": "settled",
+      "closedBy": "did:rwp:example.org:closure-authority-1",
+      "closedAt": "2026-11-10T01:10:30Z"
+    },
+    {
+      "@id": "did:rwp:example.org:assert-completed-01:sha256:1111111111111111111111111111111111111111111111111111111111111111",
+      "@type": [
+        "rw:Record",
+        "wce:RoleAssertionRecord"
+      ],
+      "subject": "did:rwp:example.org:case-completed:sha256:0000000000000000000000000000000000000000000000000000000000000000",
+      "predicate": "https://example.org/ns/work-closure#hasMandate",
+      "object": "did:rwp:example.org:mandate-completed:sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "assertedBy": "did:rwp:example.org:agent-record-authority",
+      "assertedAt": "2026-11-10T01:10:40Z"
+    },
+    {
+      "@id": "did:rwp:example.org:assert-completed-02:sha256:2222222222222222222222222222222222222222222222222222222222222222",
+      "@type": [
+        "rw:Record",
+        "wce:RoleAssertionRecord"
+      ],
+      "subject": "did:rwp:example.org:case-completed:sha256:0000000000000000000000000000000000000000000000000000000000000000",
+      "predicate": "https://example.org/ns/work-closure#hasAuthorization",
+      "object": "did:rwp:example.org:authorization-completed:sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "assertedBy": "did:rwp:example.org:agent-record-authority",
+      "assertedAt": "2026-11-10T01:10:40Z"
+    },
+    {
+      "@id": "did:rwp:example.org:assert-completed-03:sha256:3333333333333333333333333333333333333333333333333333333333333333",
+      "@type": [
+        "rw:Record",
+        "wce:RoleAssertionRecord"
+      ],
+      "subject": "did:rwp:example.org:case-completed:sha256:0000000000000000000000000000000000000000000000000000000000000000",
+      "predicate": "https://example.org/ns/work-closure#hasExecution",
+      "object": "did:rwp:example.org:execution-completed:sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "assertedBy": "did:rwp:example.org:agent-record-authority",
+      "assertedAt": "2026-11-10T01:10:40Z"
+    },
+    {
+      "@id": "did:rwp:example.org:assert-completed-04:sha256:4444444444444444444444444444444444444444444444444444444444444444",
+      "@type": [
+        "rw:Record",
+        "wce:RoleAssertionRecord"
+      ],
+      "subject": "did:rwp:example.org:case-completed:sha256:0000000000000000000000000000000000000000000000000000000000000000",
+      "predicate": "https://example.org/ns/work-closure#hasObservedEffect",
+      "object": "did:rwp:example.org:effect-completed:sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      "assertedBy": "did:rwp:example.org:agent-record-authority",
+      "assertedAt": "2026-11-10T01:10:40Z"
+    },
+    {
+      "@id": "did:rwp:example.org:assert-completed-05:sha256:5555555555555555555555555555555555555555555555555555555555555555",
+      "@type": [
+        "rw:Record",
+        "wce:RoleAssertionRecord"
+      ],
+      "subject": "did:rwp:example.org:case-completed:sha256:0000000000000000000000000000000000000000000000000000000000000000",
+      "predicate": "https://example.org/ns/work-closure#hasEvidence",
+      "object": "did:rwp:example.org:evidence-diff-completed:sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "assertedBy": "did:rwp:example.org:agent-record-authority",
+      "assertedAt": "2026-11-10T01:10:40Z"
+    },
+    {
+      "@id": "did:rwp:example.org:assert-completed-06:sha256:6666666666666666666666666666666666666666666666666666666666666666",
+      "@type": [
+        "rw:Record",
+        "wce:RoleAssertionRecord"
+      ],
+      "subject": "did:rwp:example.org:case-completed:sha256:0000000000000000000000000000000000000000000000000000000000000000",
+      "predicate": "https://example.org/ns/work-closure#hasEvidence",
+      "object": "did:rwp:example.org:evidence-test-completed:sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "assertedBy": "did:rwp:example.org:agent-record-authority",
+      "assertedAt": "2026-11-10T01:10:40Z"
+    },
+    {
+      "@id": "did:rwp:example.org:assert-completed-07:sha256:7777777777777777777777777777777777777777777777777777777777777777",
+      "@type": [
+        "rw:Record",
+        "wce:RoleAssertionRecord"
+      ],
+      "subject": "did:rwp:example.org:case-completed:sha256:0000000000000000000000000000000000000000000000000000000000000000",
+      "predicate": "https://example.org/ns/work-closure#hasEvaluation",
+      "object": "did:rwp:example.org:evaluation-tests-completed:sha256:1111111111111111111111111111111111111111111111111111111111111111",
+      "assertedBy": "did:rwp:example.org:agent-record-authority",
+      "assertedAt": "2026-11-10T01:10:40Z"
+    },
+    {
+      "@id": "did:rwp:example.org:assert-completed-08:sha256:8888888888888888888888888888888888888888888888888888888888888888",
+      "@type": [
+        "rw:Record",
+        "wce:RoleAssertionRecord"
+      ],
+      "subject": "did:rwp:example.org:case-completed:sha256:0000000000000000000000000000000000000000000000000000000000000000",
+      "predicate": "https://example.org/ns/work-closure#hasEvaluation",
+      "object": "did:rwp:example.org:evaluation-review-completed:sha256:2222222222222222222222222222222222222222222222222222222222222222",
+      "assertedBy": "did:rwp:example.org:agent-record-authority",
+      "assertedAt": "2026-11-10T01:10:40Z"
+    },
+    {
+      "@id": "did:rwp:example.org:assert-completed-09:sha256:9999999999999999999999999999999999999999999999999999999999999999",
+      "@type": [
+        "rw:Record",
+        "wce:RoleAssertionRecord"
+      ],
+      "subject": "did:rwp:example.org:case-completed:sha256:0000000000000000000000000000000000000000000000000000000000000000",
+      "predicate": "https://example.org/ns/work-closure#hasWorkAcceptance",
+      "object": "did:rwp:example.org:acceptance-completed:sha256:3333333333333333333333333333333333333333333333333333333333333333",
+      "assertedBy": "did:rwp:example.org:agent-record-authority",
+      "assertedAt": "2026-11-10T01:10:40Z"
+    },
+    {
+      "@id": "did:rwp:example.org:assert-completed-10:sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "@type": [
+        "rw:Record",
+        "wce:RoleAssertionRecord"
+      ],
+      "subject": "did:rwp:example.org:case-completed:sha256:0000000000000000000000000000000000000000000000000000000000000000",
+      "predicate": "https://example.org/ns/work-closure#hasClosure",
+      "object": "did:rwp:example.org:closure-completed:sha256:4444444444444444444444444444444444444444444444444444444444444444",
+      "assertedBy": "did:rwp:example.org:agent-record-authority",
+      "assertedAt": "2026-11-10T01:10:40Z"
+    },
+    {
+      "@id": "did:rwp:example.org:assert-completed-01:sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "@type": [
+        "rw:Record",
+        "wce:RoleAssertionRecord"
+      ],
+      "subject": "did:rwp:example.org:case-completed:sha256:0000000000000000000000000000000000000000000000000000000000000000",
+      "predicate": "https://example.org/ns/work-closure#hasMandate",
+      "object": "did:rwp:example.org:mandate-completed:sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "assertedBy": "did:rwp:attacker.example:issuer-1",
+      "assertedAt": "2026-11-10T01:10:51Z"
+    }
+  ]
+}
